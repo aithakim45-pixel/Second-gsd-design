@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insights & Blog | GSD IDEA - Structural Engineering GCC</title>
+    <meta name="description" content="Read the latest insights, case studies, and tutorials on structural engineering in the Gulf region.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --white: #FFFFFF;
+            --orange: #E85D04;
+            --orange-hover: #C44E03;
+            --dark: #0C0C0C;
+            --light-grey: #F4F5F7;
+            --glass: rgba(255, 255, 255, 0.8);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        [lang="ar"] * { font-family: 'Cairo', sans-serif; }
+
+        body { background-color: var(--white); color: var(--dark); overflow-x: hidden; line-height: 1.6; }
+
+        /* Navbar */
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 1.5rem 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; transition: var(--transition);
+        }
+
+        nav.scrolled {
+            background: var(--glass); backdrop-filter: blur(10px);
+            padding: 1rem 5%; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            display: flex; align-items: center; gap: 10px;
+            text-decoration: none; color: var(--dark); font-weight: 700; font-size: 1.25rem;
+        }
+
+        .logo svg { width: 32px; height: 32px; }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a {
+            text-decoration: none; color: var(--dark); font-weight: 400; font-size: 0.9rem;
+            text-transform: uppercase; letter-spacing: 1px; transition: var(--transition);
+        }
+        .nav-links a:hover { color: var(--orange); }
+        .nav-actions { display: flex; gap: 1.5rem; align-items: center; }
+        .lang-toggle {
+            background: #eee; border-radius: 50px; padding: 4px 12px; cursor: pointer;
+            font-size: 0.8rem; font-weight: 600; border: none;
+        }
+        .cta-btn {
+            background: var(--orange); color: white; padding: 10px 24px;
+            border-radius: 50px; text-decoration: none; font-weight: 600;
+            transition: var(--transition); border: none; cursor: pointer;
+        }
+
+        /* Hero */
+        .hero-blog { padding: 180px 5% 60px; text-align: center; background: var(--light-grey); }
+        .hero-blog h1 { font-size: 3rem; font-weight: 800; margin-bottom: 1rem; }
+        .hero-blog p { font-size: 1.2rem; color: #666; }
+
+        /* Featured */
+        .featured-article { padding: 60px 10%; }
+        .featured-card {
+            background: var(--dark); color: white; border-radius: 20px;
+            overflow: hidden; display: flex; align-items: center;
+            min-height: 400px; transition: var(--transition);
+        }
+        .featured-img { width: 50%; height: 400px; background: linear-gradient(135deg, #333, #111); }
+        .featured-content { width: 50%; padding: 4rem; }
+        .category-badge { background: var(--orange); color: white; padding: 4px 12px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; margin-bottom: 1.5rem; display: inline-block; }
+        .featured-content h2 { font-size: 2.2rem; margin-bottom: 1.5rem; line-height: 1.2; }
+        .featured-content p { color: #aaa; margin-bottom: 2rem; }
+        .read-more { color: var(--orange); text-decoration: none; font-weight: 700; display: inline-block; }
+
+        /* Grid */
+        .article-grid { padding: 60px 10% 100px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; }
+        .blog-card { background: white; border-radius: 12px; overflow: hidden; transition: var(--transition); box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        .blog-card:hover { transform: translateY(-5px); }
+        .blog-thumb { height: 200px; background: #eee; }
+        .blog-info { padding: 2rem; }
+        .blog-info h3 { font-size: 1.25rem; margin-bottom: 1rem; line-height: 1.4; }
+        .blog-info p { color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }
+
+        /* Newsletter */
+        .newsletter { background: var(--orange); color: white; padding: 80px 10%; text-align: center; }
+        .newsletter h2 { font-size: 2rem; margin-bottom: 2rem; }
+        .newsletter-form { display: flex; justify-content: center; gap: 1rem; max-width: 600px; margin: 0 auto; }
+        .newsletter-form input { flex: 1; padding: 15px 25px; border-radius: 50px; border: none; font-size: 1rem; }
+        .newsletter-form button { background: white; color: var(--orange); padding: 15px 35px; border-radius: 50px; border: none; font-weight: 700; cursor: pointer; transition: var(--transition); }
+        .newsletter-form button:hover { background: var(--dark); color: white; }
+
+        /* Footer */
+        footer { background: var(--dark); color: white; padding: 80px 5% 40px; border-top: 1px solid #222; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 4rem; }
+        .footer-logo .logo { color: white; }
+        .footer-col h5 { color: var(--orange); margin-bottom: 1.5rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.8rem; }
+        .footer-col ul li a { color: #aaa; text-decoration: none; }
+        .footer-bottom { padding-top: 2rem; border-top: 1px solid #222; display: flex; justify-content: space-between; color: #666; font-size: 0.9rem; }
+
+        /* Animations */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 968px) {
+            .nav-links, .nav-actions .cta-btn { display: none; }
+            .featured-card { flex-direction: column; }
+            .featured-img, .featured-content { width: 100%; }
+            .featured-content { padding: 2rem; }
+            .newsletter-form { flex-direction: column; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <a href="index.html" class="logo">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0" y="16" width="8" height="8" stroke="#E85D04" stroke-width="2"/>
+                <rect x="8" y="8" width="8" height="8" stroke="#E85D04" stroke-width="2"/>
+                <rect x="16" y="0" width="8" height="8" stroke="#E85D04" stroke-width="2"/>
+            </svg>
+            <span>GSD IDEA</span>
+        </a>
+        <div class="nav-links">
+            <a href="steel.html" data-t="nav_steel">STEEL</a>
+            <a href="concrete.html" data-t="nav_concrete">CONCRETE</a>
+            <a href="bim.html" data-t="nav_bim">BIM</a>
+            <a href="training.html" data-t="nav_training">TRAINING</a>
+            <a href="about.html" data-t="nav_about">ABOUT</a>
+            <a href="blog.html" data-t="nav_blog">INSIGHTS</a>
+        </div>
+        <div class="nav-actions">
+            <button class="lang-toggle" onclick="toggleLang()">EN|AR</button>
+            <a href="#" class="cta-btn" data-t="nav_cta">Book a Demo</a>
+        </div>
+    </nav>
+
+    <section class="hero-blog">
+        <h1 data-t="hero_title">GULF STRUCTURAL BLOG</h1>
+        <p data-t="hero_sub">Practical insights on structural engineering in the Gulf region</p>
+    </section>
+
+    <section class="featured-article reveal">
+        <div class="featured-card">
+            <div class="featured-img" style="background: linear-gradient(135deg, #444, #222);"></div>
+            <div class="featured-content">
+                <span class="category-badge" data-t="cat_case">Case Study</span>
+                <h2 data-t="feat_title">Case Study: Optimizing Connections at COEX Centre, Dubai Expo 2020</h2>
+                <p data-t="feat_p">Discover how advanced connection design reduced material usage by 15% while meeting strict safety codes for the Expo 2020 pavilions.</p>
+                <a href="#" class="read-more" data-t="read_more">Read More →</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="article-grid">
+        <article class="blog-card reveal">
+            <div class="blog-thumb" style="background: linear-gradient(135deg, #eee, #ddd);"></div>
+            <div class="blog-info">
+                <span class="category-badge" data-t="cat_tut">Tutorial</span>
+                <h3 data-t="b1_title">Designing and Verifying All Steel Hall Connections in Under an Hour</h3>
+                <p data-t="b1_p">A step-by-step guide to rapid design using IDEA StatiCa's automated tools.</p>
+                <a href="#" class="read-more" data-t="read_more">Read More →</a>
+            </div>
+        </article>
+        <article class="blog-card reveal">
+            <div class="blog-thumb" style="background: linear-gradient(135deg, #e3e3e3, #ccc);"></div>
+            <div class="blog-info">
+                <span class="category-badge" data-t="cat_best">Best Practice</span>
+                <h3 data-t="b2_title">Solving RFIs Fast: Retrofitting and On-Site Fixes</h3>
+                <p data-t="b2_p">How to use structural analysis to quickly verify site changes and design fixes.</p>
+                <a href="#" class="read-more" data-t="read_more">Read More →</a>
+            </div>
+        </article>
+        <article class="blog-card reveal">
+            <div class="blog-thumb" style="background: linear-gradient(135deg, #f0f0f0, #eee);"></div>
+            <div class="blog-info">
+                <span class="category-badge" data-t="cat_tech">Technology</span>
+                <h3 data-t="b3_title">Revolutionizing Anchoring Design for Structural Engineers</h3>
+                <p data-t="b3_p">Exploring new methods for base plate and anchor bolt verification.</p>
+                <a href="#" class="read-more" data-t="read_more">Read More →</a>
+            </div>
+        </article>
+        <article class="blog-card reveal">
+            <div class="blog-thumb" style="background: linear-gradient(135deg, #ddd, #bbb);"></div>
+            <div class="blog-info">
+                <span class="category-badge" data-t="cat_int">Integration</span>
+                <h3 data-t="b4_title">IDEA StatiCa and Hilti PROFIS Engineering Integration</h3>
+                <p data-t="b4_p">Seamless workflows between anchoring design and connection analysis.</p>
+                <a href="#" class="read-more" data-t="read_more">Read More →</a>
+            </div>
+        </article>
+        <article class="blog-card reveal">
+            <div class="blog-thumb" style="background: linear-gradient(135deg, #eee, #ccc);"></div>
+            <div class="blog-info">
+                <span class="category-badge" data-t="cat_case">Case Study</span>
+                <h3 data-t="b5_title">Case Study: Opportunity Pavilion at Expo 2020</h3>
+                <p data-t="b5_p">Structural challenges and solutions for one of the most iconic Expo structures.</p>
+                <a href="#" class="read-more" data-t="read_more">Read More →</a>
+            </div>
+        </article>
+        <article class="blog-card reveal">
+            <div class="blog-thumb" style="background: linear-gradient(135deg, #ddd, #eee);"></div>
+            <div class="blog-info">
+                <span class="category-badge" data-t="cat_edu">Education</span>
+                <h3 data-t="b6_title">Understanding Shear Connections and Their Role in Bending Moments</h3>
+                <p data-t="b6_p">Deep dive into structural behavior and component interaction.</p>
+                <a href="#" class="read-more" data-t="read_more">Read More →</a>
+            </div>
+        </article>
+    </section>
+
+    <section class="newsletter reveal">
+        <h2 data-t="news_title">Stay informed on structural engineering in the Gulf</h2>
+        <div class="newsletter-form">
+            <input type="email" placeholder="Enter your email">
+            <button data-t="news_btn">Subscribe</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="footer-logo">
+                    <a href="index.html" class="logo">
+                        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="0" y="16" width="8" height="8" stroke="#E85D04" stroke-width="2"/>
+                            <rect x="8" y="8" width="8" height="8" stroke="#E85D04" stroke-width="2"/>
+                            <rect x="16" y="0" width="8" height="8" stroke="#E85D04" stroke-width="2"/>
+                        </svg>
+                        <span>GSD IDEA</span>
+                    </a>
+                </div>
+                <p style="color:#888;">GSD IDEA — UAE & GCC</p>
+            </div>
+            <div class="footer-col">
+                <h5 data-t="footer_h1">Products</h5>
+                <ul>
+                    <li><a href="steel.html">Steel</a></li>
+                    <li><a href="concrete.html">Concrete</a></li>
+                    <li><a href="bim.html">BIM</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5 data-t="footer_h2">Company</h5>
+                <ul>
+                    <li><a href="training.html">Training</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="blog.html">Insights</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5 data-t="footer_h3">Legal</h5>
+                <ul>
+                    <li><a href="#">Privacy</a></li>
+                    <li><a href="#">Terms</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Gulf Structural Design.</p>
+        </div>
+    </footer>
+
+    <script>
+        const t = {
+            en: {
+                nav_steel: "STEEL", nav_concrete: "CONCRETE", nav_bim: "BIM", nav_about: "ABOUT", nav_blog: "INSIGHTS", nav_cta: "Book a Demo",
+                hero_title: "GULF STRUCTURAL BLOG",
+                hero_sub: "Practical insights on structural engineering in the Gulf region",
+                cat_case: "Case Study", cat_tut: "Tutorial", cat_best: "Best Practice", cat_tech: "Technology", cat_int: "Integration", cat_edu: "Education",
+                feat_title: "Case Study: Optimizing Connections at COEX Centre, Dubai Expo 2020",
+                feat_p: "Discover how advanced connection design reduced material usage by 15%.",
+                read_more: "Read More →",
+                b1_title: "Designing and Verifying All Steel Hall Connections in Under an Hour", b1_p: "A step-by-step guide to rapid design using IDEA StatiCa.",
+                b2_title: "Solving RFIs Fast: Retrofitting and On-Site Fixes", b2_p: "How to use structural analysis to quickly verify site changes.",
+                b3_title: "Revolutionizing Anchoring Design for Structural Engineers", b3_p: "Exploring new methods for base plate and anchor bolt verification.",
+                b4_title: "IDEA StatiCa and Hilti PROFIS Engineering Integration", b4_p: "Seamless workflows between anchoring design and analysis.",
+                b5_title: "Case Study: Opportunity Pavilion at Expo 2020", b5_p: "Structural challenges and solutions for iconic Expo structures.",
+                b6_title: "Understanding Shear Connections and Their Role in Bending Moments", b6_p: "Deep dive into structural behavior and interaction.",
+                news_title: "Stay informed on structural engineering in the Gulf", news_btn: "Subscribe",
+                footer_h1: "Products", footer_h2: "Company", footer_h3: "Legal"
+            },
+            ar: {
+                nav_steel: "الصلب", nav_concrete: "الخرسانة", nav_bim: "نمذجة معلومات البناء", nav_about: "من نحن", nav_blog: "رؤى", nav_cta: "احجز عرضاً",
+                hero_title: "مدونة الخليج الإنشائية",
+                hero_sub: "رؤى عملية حول الهندسة الإنشائية في منطقة الخليج العربي",
+                cat_case: "دراسة حالة", cat_tut: "دروس تعليمية", cat_best: "أفضل الممارسات", cat_tech: "تكنولوجيا", cat_int: "تكامل", cat_edu: "تعليم",
+                feat_title: "دراسة حالة: تحسين الوصلات في مركز COEX، دبي إكسبو 2020",
+                feat_p: "اكتشف كيف قلل تصميم الوصلات المتقدم من استهلاك المواد بنسبة 15٪.",
+                read_more: "اقرأ المزيد ←",
+                b1_title: "تصميم والتحقق من جميع وصلات القاعة الفولاذية في أقل من ساعة", b1_p: "دليل خطوة بخطوة للتصميم السريع باستخدام IDEA StatiCa.",
+                b2_title: "حل طلبات المعلومات بسرعة: التعديل والإصلاح في الموقع", b2_p: "كيفية استخدام التحليل الإنشائي للتحقق بسرعة من تغييرات الموقع.",
+                b3_title: "إحداث ثورة في تصميم التثبيت للمهندسين الإنشائيين", b3_p: "استكشاف طرق جديدة للتحقق من صفيحة القاعدة وبراغي التثبيت.",
+                b4_title: "تكامل IDEA StatiCa و Hilti PROFIS Engineering", b4_p: "سير عمل سلس بين تصميم التثبيت والتحليل.",
+                b5_title: "دراسة حالة: جناح الفرص في إكسبو 2020", b5_p: "التحديات والحلول الإنشائية لأحد أبرز هياكل إكسبو.",
+                b6_title: "فهم وصلات القص ودورها في نقل عزوم الانحناء", b6_p: "تعمق في السلوك الإنشائي وتفاعل المكونات.",
+                news_title: "ابق على اطلاع بآخر مستجدات الهندسة الإنشائية في الخليج", news_btn: "اشترك الآن",
+                footer_h1: "المنتجات", footer_h2: "الشركة", footer_h3: "قانوني"
+            }
+        };
+
+        let currentLang = 'en';
+        function toggleLang() {
+            currentLang = currentLang === 'en' ? 'ar' : 'en';
+            document.documentElement.lang = currentLang;
+            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            updateTranslations();
+        }
+
+        function updateTranslations() {
+            document.querySelectorAll('[data-t]').forEach(el => {
+                const key = el.getAttribute('data-t');
+                if (t[currentLang][key]) el.innerText = t[currentLang][key];
+            });
+        }
+
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
