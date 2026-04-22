@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | GSD IDEA - Certified IDEA StatiCa Reseller UAE & GCC</title>
+    <meta name="description" content="Learn about Gulf Structural Design (GSD IDEA), the certified partner for IDEA StatiCa in the GCC. Serving UAE, Saudi Arabia, and more.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --white: #FFFFFF;
+            --orange: #E85D04;
+            --orange-hover: #C44E03;
+            --dark: #0C0C0C;
+            --light-grey: #F4F5F7;
+            --glass: rgba(255, 255, 255, 0.8);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        [lang="ar"] * { font-family: 'Cairo', sans-serif; }
+
+        body { background-color: var(--white); color: var(--dark); overflow-x: hidden; line-height: 1.6; }
+
+        /* Navbar */
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 1.5rem 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; transition: var(--transition);
+        }
+
+        nav.scrolled {
+            background: var(--glass); backdrop-filter: blur(10px);
+            padding: 1rem 5%; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            display: flex; align-items: center; gap: 10px;
+            text-decoration: none; color: var(--dark); font-weight: 700; font-size: 1.25rem;
+        }
+
+        .logo svg { width: 32px; height: 32px; }
+
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+
+        .nav-links a {
+            text-decoration: none; color: var(--dark); font-weight: 400; font-size: 0.9rem;
+            text-transform: uppercase; letter-spacing: 1px; transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--orange); }
+
+        .nav-actions { display: flex; gap: 1.5rem; align-items: center; }
+
+        .lang-toggle {
+            background: #eee; border-radius: 50px; padding: 4px 12px; cursor: pointer;
+            font-size: 0.8rem; font-weight: 600; border: none;
+        }
+
+        .cta-btn {
+            background: var(--orange); color: white; padding: 10px 24px;
+            border-radius: 50px; text-decoration: none; font-weight: 600;
+            transition: var(--transition); border: none; cursor: pointer;
+        }
+
+        .cta-btn:hover { background: var(--orange-hover); transform: translateY(-2px); }
+
+        /* Hero */
+        .hero-white {
+            padding: 180px 5% 100px; text-align: center; background: var(--white);
+        }
+
+        .hero-white h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 1.5rem; position: relative; display: inline-block; }
+
+        .hero-white h1::after {
+            content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%);
+            width: 80px; height: 5px; background: var(--orange); border-radius: 5px;
+        }
+
+        .hero-white p { font-size: 1.25rem; color: #666; max-width: 700px; margin: 2rem auto 0; }
+
+        /* Story */
+        .story { padding: 100px 10%; display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: center; }
+
+        .pull-quote { font-size: 2rem; font-weight: 700; color: var(--dark); border-left: 5px solid var(--orange); padding-left: 2rem; line-height: 1.2; }
+
+        [lang="ar"] .pull-quote { border-left: none; border-right: 5px solid var(--orange); padding-left: 0; padding-right: 2rem; }
+
+        .story-text { font-size: 1.1rem; color: #444; }
+
+        /* What We Do */
+        .what-we-do { padding: 100px 5%; background: var(--light-grey); text-align: center; }
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 4rem; }
+
+        .service-card { background: white; padding: 3rem 2rem; border-radius: 12px; transition: var(--transition); box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
+        .service-card:hover { transform: translateY(-10px); }
+        .service-card i { font-size: 2.5rem; color: var(--orange); margin-bottom: 1.5rem; display: block; }
+
+        /* Team */
+        .team { padding: 100px 5%; text-align: center; }
+        .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; margin-top: 4rem; }
+
+        .team-card { text-align: center; }
+        .team-photo { width: 150px; height: 150px; background: #eee; border-radius: 50%; margin: 0 auto 1.5rem; border: 2px dashed #ddd; }
+        .team-card h4 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+        .team-card p { color: #888; font-size: 0.9rem; margin-bottom: 1rem; }
+        .linkedin-link { color: var(--orange); font-size: 1.2rem; text-decoration: none; }
+
+        /* Certifications */
+        .certs-strip { padding: 60px 5%; text-align: center; border-top: 1px solid #eee; border-bottom: 1px solid #eee; }
+        .cert-badges { display: flex; justify-content: center; gap: 2rem; margin-top: 1.5rem; flex-wrap: wrap; }
+        .cert-badge { border: 2px solid var(--orange); color: var(--orange); padding: 8px 24px; border-radius: 4px; font-weight: 700; }
+
+        /* GCC Coverage */
+        .gcc-coverage { padding: 80px 5%; text-align: center; }
+        .gcc-badges { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
+        .gcc-pill { background: var(--light-grey); padding: 10px 20px; border-radius: 50px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+
+        /* Contact CTA */
+        .contact-cta { background: var(--dark); color: white; text-align: center; padding: 100px 5%; }
+        .contact-cta h2 { font-size: 2.5rem; margin-bottom: 2rem; }
+        .contact-info { margin-top: 2rem; font-size: 1.2rem; color: #aaa; }
+
+        /* Footer */
+        footer { background: var(--dark); color: white; padding: 80px 5% 40px; border-top: 1px solid #222; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 4rem; }
+        .footer-logo .logo { color: white; }
+        .footer-col h5 { color: var(--orange); margin-bottom: 1.5rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.8rem; }
+        .footer-col ul li a { color: #aaa; text-decoration: none; }
+        .footer-bottom { padding-top: 2rem; border-top: 1px solid #222; display: flex; justify-content: space-between; color: #666; font-size: 0.9rem; }
+
+        /* Animations */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 968px) {
+            .nav-links, .nav-actions .cta-btn { display: none; }
+            .hero-white h1 { font-size: 2.5rem; }
+            .story { grid-template-columns: 1fr; gap: 2rem; }
+            .team-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <a href="index.html" class="logo">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0" y="16" width="8" height="8" stroke="#E85D04" stroke-width="2"/>
+                <rect x="8" y="8" width="8" height="8" stroke="#E85D04" stroke-width="2"/>
+                <rect x="16" y="0" width="8" height="8" stroke="#E85D04" stroke-width="2"/>
+            </svg>
+            <span>GSD IDEA</span>
+        </a>
+        <div class="nav-links">
+            <a href="steel.html" data-t="nav_steel">STEEL</a>
+            <a href="concrete.html" data-t="nav_concrete">CONCRETE</a>
+            <a href="bim.html" data-t="nav_bim">BIM</a>
+            <a href="training.html" data-t="nav_training">TRAINING</a>
+            <a href="about.html" data-t="nav_about">ABOUT</a>
+            <a href="blog.html" data-t="nav_blog">INSIGHTS</a>
+        </div>
+        <div class="nav-actions">
+            <button class="lang-toggle" onclick="toggleLang()">EN|AR</button>
+            <a href="#" class="cta-btn" data-t="nav_cta">Book a Demo</a>
+        </div>
+    </nav>
+
+    <section class="hero-white">
+        <h1 data-t="hero_title">ABOUT GULF STRUCTURAL DESIGN</h1>
+        <p data-t="hero_sub">The GCC's certified partner for advanced structural engineering software.</p>
+    </section>
+
+    <section class="story reveal">
+        <div class="pull-quote" data-t="quote">"We believe every structural engineer in the Gulf deserves access to world-class design tools, with local support."</div>
+        <div class="story-text" data-t="story_p">Gulf Structural Design was founded to bring IDEA StatiCa's university-verified structural analysis technology to engineers across the UAE, Saudi Arabia, Kuwait, Qatar, Bahrain, and Oman. As the region's only certified reseller, we combine deep technical expertise with hands-on local support.</div>
+    </section>
+
+    <section class="what-we-do">
+        <h2 data-t="wwd_title">What We Do</h2>
+        <div class="grid-4">
+            <div class="service-card reveal">
+                <i data-t="icon1">💼</i>
+                <h4 data-t="wwd1_t">Software Sales</h4>
+                <p data-t="wwd1_p">Official licensing for IDEA StatiCa, GEO5, and ZWSOFT.</p>
+            </div>
+            <div class="service-card reveal">
+                <i data-t="icon2">🎓</i>
+                <h4 data-t="wwd2_t">Training</h4>
+                <p data-t="wwd2_p">Hands-on workshops and certified training courses.</p>
+            </div>
+            <div class="service-card reveal">
+                <i data-t="icon3">🏗️</i>
+                <h4 data-t="wwd3_t">Consulting</h4>
+                <p data-t="wwd3_p">Technical advisory for complex structural challenges.</p>
+            </div>
+            <div class="service-card reveal">
+                <i data-t="icon4">🛠️</i>
+                <h4 data-t="wwd4_t">Support</h4>
+                <p data-t="wwd4_p">Local technical assistance in Arabic and English.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="team">
+        <h2 data-t="team_title">Meet the Team</h2>
+        <div class="team-grid">
+            <div class="team-card reveal">
+                <div class="team-photo"></div>
+                <h4 data-t="name_p">Name Placeholder</h4>
+                <p data-t="role_p">Title Placeholder</p>
+                <a href="#" class="linkedin-link">LinkedIn</a>
+            </div>
+            <div class="team-card reveal">
+                <div class="team-photo"></div>
+                <h4 data-t="name_p">Name Placeholder</h4>
+                <p data-t="role_p">Title Placeholder</p>
+                <a href="#" class="linkedin-link">LinkedIn</a>
+            </div>
+            <div class="team-card reveal">
+                <div class="team-photo"></div>
+                <h4 data-t="name_p">Name Placeholder</h4>
+                <p data-t="role_p">Title Placeholder</p>
+                <a href="#" class="linkedin-link">LinkedIn</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="certs-strip reveal">
+        <span data-t="cert_label">Certified by:</span>
+        <div class="cert-badges">
+            <div class="cert-badge">IDEA StatiCa</div>
+            <div class="cert-badge">GEO5</div>
+            <div class="cert-badge">ZWSOFT</div>
+        </div>
+    </div>
+
+    <section class="gcc-coverage reveal">
+        <h2 data-t="gcc_title">Serving the GCC Region</h2>
+        <div class="gcc-badges">
+            <div class="gcc-pill">🇦🇪 UAE</div>
+            <div class="gcc-pill">🇸🇦 Saudi Arabia</div>
+            <div class="gcc-pill">🇰🇼 Kuwait</div>
+            <div class="gcc-pill">🇶🇦 Qatar</div>
+            <div class="gcc-pill">🇧🇭 Bahrain</div>
+            <div class="gcc-pill">🇴🇲 Oman</div>
+        </div>
+    </section>
+
+    <section class="contact-cta">
+        <h2 data-t="cta_title">Ready to talk to a local expert?</h2>
+        <a href="mailto:support@gsdidea.ae" class="cta-btn" data-t="cta_btn">Contact Us</a>
+        <div class="contact-info">
+            <p>support@gsdidea.ae</p>
+            <p>+971 50 455 0485</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="footer-logo">
+                    <a href="index.html" class="logo">
+                        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="0" y="16" width="8" height="8" stroke="#E85D04" stroke-width="2"/>
+                            <rect x="8" y="8" width="8" height="8" stroke="#E85D04" stroke-width="2"/>
+                            <rect x="16" y="0" width="8" height="8" stroke="#E85D04" stroke-width="2"/>
+                        </svg>
+                        <span>GSD IDEA</span>
+                    </a>
+                </div>
+                <p style="color:#888;">GSD IDEA — UAE & GCC</p>
+            </div>
+            <div class="footer-col">
+                <h5 data-t="footer_h1">Products</h5>
+                <ul>
+                    <li><a href="steel.html">Steel</a></li>
+                    <li><a href="concrete.html">Concrete</a></li>
+                    <li><a href="bim.html">BIM</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5 data-t="footer_h2">Company</h5>
+                <ul>
+                    <li><a href="training.html">Training</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="blog.html">Insights</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5 data-t="footer_h3">Legal</h5>
+                <ul>
+                    <li><a href="#">Privacy</a></li>
+                    <li><a href="#">Terms</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Gulf Structural Design.</p>
+        </div>
+    </footer>
+
+    <script>
+        const t = {
+            en: {
+                nav_steel: "STEEL", nav_concrete: "CONCRETE", nav_bim: "BIM", nav_about: "ABOUT", nav_blog: "INSIGHTS", nav_cta: "Book a Demo",
+                hero_title: "ABOUT GULF STRUCTURAL DESIGN",
+                hero_sub: "The GCC's certified partner for advanced structural engineering software.",
+                quote: "\"We believe every structural engineer in the Gulf deserves access to world-class design tools, with local support.\"",
+                story_p: "Gulf Structural Design was founded to bring IDEA StatiCa's university-verified structural analysis technology to engineers across the UAE, Saudi Arabia, Kuwait, Qatar, Bahrain, and Oman. As the region's only certified reseller, we combine deep technical expertise with hands-on local support.",
+                wwd_title: "What We Do",
+                wwd1_t: "Software Sales", wwd1_p: "Official licensing for IDEA StatiCa, GEO5, and ZWSOFT.",
+                wwd2_t: "Training", wwd2_p: "Hands-on workshops and certified training courses.",
+                wwd3_t: "Consulting", wwd3_p: "Technical advisory for complex structural challenges.",
+                wwd4_t: "Support", wwd4_p: "Local technical assistance in Arabic and English.",
+                team_title: "Meet the Team", name_p: "Name Placeholder", role_p: "Title Placeholder",
+                cert_label: "Certified by:", gcc_title: "Serving the GCC Region",
+                cta_title: "Ready to talk to a local expert?", cta_btn: "Contact Us",
+                footer_h1: "Products", footer_h2: "Company", footer_h3: "Legal"
+            },
+            ar: {
+                nav_steel: "الصلب", nav_concrete: "الخرسانة", nav_bim: "نمذجة معلومات البناء", nav_about: "من نحن", nav_blog: "رؤى", nav_cta: "احجز عرضاً",
+                hero_title: "حول الخليج للتصميم الإنشائي",
+                hero_sub: "الشريك المعتمد في دول مجلس التعاون الخليجي لبرمجيات الهندسة الإنشائية المتقدمة.",
+                quote: "\"نؤمن بأن كل مهندس إنشائي في الخليج يستحق الوصول إلى أدوات تصميم عالمية المستوى، مع دعم محلي.\"",
+                story_p: "تأسست شركة الخليج للتصميم الإنشائي لجلب تكنولوجيا التحليل الإنشائي الموثقة جامعيًا من IDEA StatiCa إلى المهندسين في الإمارات والسعودية والكويت وقطر والبحرين وعمان. بصفتنا الموزع المعتمد الوحيد في المنطقة، فإننا نجمع بين الخبرة الفنية العميقة والدعم المحلي المباشر.",
+                wwd_title: "ماذا نفعل",
+                wwd1_t: "مبيعات البرمجيات", wwd1_p: "ترخيص رسمي لـ IDEA StatiCa و GEO5 و ZWSOFT.",
+                wwd2_t: "التدريب", wwd2_p: "ورش عمل تطبيقية ودورات تدريبية معتمدة.",
+                wwd3_t: "الاستشارات", wwd3_p: "استشارات فنية للتحديات الإنشائية المعقدة.",
+                wwd4_t: "الدعم", wwd4_p: "مساعدة فنية محلية باللغتين العربية والإنجليزية.",
+                team_title: "تعرف على الفريق", name_p: "اسم العضو", role_p: "المسمى الوظيفي",
+                cert_label: "معتمد من قبل:", gcc_title: "نخدم منطقة الخليج العربي",
+                cta_title: "هل أنت مستعد للتحدث مع خبير محلي؟", cta_btn: "اتصل بنا",
+                footer_h1: "المنتجات", footer_h2: "الشركة", footer_h3: "قانوني"
+            }
+        };
+
+        let currentLang = 'en';
+        function toggleLang() {
+            currentLang = currentLang === 'en' ? 'ar' : 'en';
+            document.documentElement.lang = currentLang;
+            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            updateTranslations();
+        }
+
+        function updateTranslations() {
+            document.querySelectorAll('[data-t]').forEach(el => {
+                const key = el.getAttribute('data-t');
+                if (t[currentLang][key]) el.innerText = t[currentLang][key];
+            });
+        }
+
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
