@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steel Design | IDEA StatiCa UAE & GCC - GSD IDEA</title>
+    <meta name="description" content="Design and code-check any steel connection. Beam-to-column, footings, and 3D loaded connections with IDEA StatiCa.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --white: #FFFFFF;
+            --orange: #E85D04;
+            --orange-hover: #C44E03;
+            --dark: #0C0C0C;
+            --light-grey: #F4F5F7;
+            --glass: rgba(255, 255, 255, 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        [lang="ar"] * {
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        nav.scrolled {
+            background: rgba(12, 12, 12, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: white;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .logo svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 400;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--orange);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .lang-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50px;
+            padding: 4px 12px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: none;
+        }
+
+        .cta-btn {
+            background: var(--orange);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-btn:hover {
+            background: var(--orange-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Hero */
+        .hero-dark {
+            height: 70vh;
+            background: var(--dark);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+        }
+
+        .hero-dark h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .hero-dark h1 span {
+            color: var(--orange);
+        }
+
+        .hero-dark p {
+            font-size: 1.5rem;
+            color: #888;
+            max-width: 700px;
+            margin-top: 1rem;
+        }
+
+        /* Scrolly Features */
+        .features-scrolly {
+            height: 400vh;
+            position: relative;
+        }
+
+        .sticky-feature {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+            gap: 5%;
+        }
+
+        .feature-panel {
+            width: 40%;
+        }
+
+        .feature-card {
+            position: absolute;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.5s;
+        }
+
+        .feature-card.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .feature-card h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .code-tag {
+            display: inline-block;
+            background: var(--light-grey);
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-right: 10px;
+            color: #666;
+        }
+
+        .feature-visual {
+            width: 55%;
+            height: 60vh;
+            background: #eee;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: #ccc;
+            font-size: 2rem;
+            overflow: hidden;
+        }
+
+        .visual-box {
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+
+        .visual-box.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Capability Grid */
+        .cap-grid {
+            padding: 100px 10%;
+            background: var(--light-grey);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+
+        .cap-item {
+            text-align: center;
+        }
+
+        .cap-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--orange);
+        }
+
+        .cap-item p {
+            color: #666;
+        }
+
+        /* CTA */
+        .steel-cta {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 100px 5%;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 80px 5% 40px;
+            border-top: 1px solid #222;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-logo .logo {
+            color: white;
+        }
+
+        .footer-col h5 {
+            color: var(--orange);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col ul li a {
+            color: #aaa;
+            text-decoration: none;
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid #222;
+            display: flex;
+            justify-content: space-between;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 968px) {
+            .nav-links, .nav-actions .cta-btn { display: none; }
+            .hero-dark h1 { font-size: 2.5rem; }
+            .sticky-feature { flex-direction: column; justify-content: center; }
+            .feature-panel, .feature-visual { width: 100%; text-align: center; }
+            .cap-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <a href="index.html" class="logo">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0" y="16" width="8" height="8" stroke="#E85D04" stroke-width="2"/>
+                <rect x="8" y="8" width="8" height="8" stroke="#E85D04" stroke-width="2"/>
+                <rect x="16" y="0" width="8" height="8" stroke="#E85D04" stroke-width="2"/>
+            </svg>
+            <span>GSD IDEA</span>
+        </a>
+        <div class="nav-links">
+            <a href="steel.html" data-t="nav_steel">STEEL</a>
+            <a href="concrete.html" data-t="nav_concrete">CONCRETE</a>
+            <a href="bim.html" data-t="nav_bim">BIM</a>
+            <a href="training.html" data-t="nav_training">TRAINING</a>
+            <a href="about.html" data-t="nav_about">ABOUT</a>
+            <a href="blog.html" data-t="nav_insights">INSIGHTS</a>
+        </div>
+        <div class="nav-actions">
+            <button class="lang-toggle" onclick="toggleLang()">EN|AR</button>
+            <a href="#" class="cta-btn" data-t="nav_cta">Book a Demo</a>
+        </div>
+    </nav>
+
+    <section class="hero-dark">
+        <h1 data-t="hero_title">IDEA STATICA <span>STEEL</span></h1>
+        <p data-t="hero_sub">The world's leading software for steel connection design and member code-checking.</p>
+    </section>
+
+    <div class="features-scrolly" id="scrolly">
+        <div class="sticky-feature">
+            <div class="feature-panel">
+                <div class="feature-card active" id="feat-1">
+                    <h2 data-t="f1_title">Beam to Column</h2>
+                    <p data-t="f1_desc">Design moments, shear, and hollow section connections with ease. Automated checks for all components.</p>
+                    <div>
+                        <span class="code-tag">EN 1993</span>
+                        <span class="code-tag">AISC 360</span>
+                    </div>
+                </div>
+                <div class="feature-card" id="feat-2">
+                    <h2 data-t="f2_title">Footings & Anchoring</h2>
+                    <p data-t="f2_desc">Check base plates, anchors, and concrete blocks. Non-linear analysis for realistic behavior.</p>
+                    <div>
+                        <span class="code-tag">ACI 318</span>
+                        <span class="code-tag">EN 1992</span>
+                    </div>
+                </div>
+                <div class="feature-card" id="feat-3">
+                    <h2 data-t="f3_title">3D Loaded Connections</h2>
+                    <p data-t="f3_desc">Handles complex 3D loading and any topology. No more simplifying assumptions.</p>
+                    <div>
+                        <span class="code-tag">CBFEM</span>
+                    </div>
+                </div>
+                <div class="feature-card" id="feat-4">
+                    <h2 data-t="f4_title">HSS Bracing</h2>
+                    <p data-t="f4_desc">Specialized tools for hollow structural sections and complex bracing systems.</p>
+                    <div>
+                        <span class="code-tag">CISC</span>
+                        <span class="code-tag">AS 4100</span>
+                    </div>
+                </div>
+            </div>
+            <div class="feature-visual">
+                <div class="visual-box active" id="vis-1" style="background:#222;">BEAM TO COLUMN</div>
+                <div class="visual-box" id="vis-2" style="background:#333;">FOOTINGS</div>
+                <div class="visual-box" id="vis-3" style="background:#444;">3D LOADED</div>
+                <div class="visual-box" id="vis-4" style="background:#555;">HSS BRACING</div>
+            </div>
+        </div>
+    </div>
+
+    <section class="cap-grid">
+        <div class="cap-item reveal">
+            <h3 data-t="cap1_title">CBFEM Method</h3>
+            <p data-t="cap1_desc">A unique combination of the finite element method and the component method.</p>
+        </div>
+        <div class="cap-item reveal">
+            <h3 data-t="cap2_title">Integrations</h3>
+            <p data-t="cap2_desc">Links with STAAD Pro, ETABS, SAP2000, Tekla, and Revit for seamless BIM workflows.</p>
+        </div>
+        <div class="cap-item reveal">
+            <h3 data-t="cap3_title">Code-Compliant Reports</h3>
+            <p data-t="cap3_desc">Generate professional, detailed reports with all formulas and references included.</p>
+        </div>
+    </section>
+
+    <section class="steel-cta">
+        <h2 style="font-size: 2.5rem; margin-bottom: 2rem;" data-t="cta_title">Ready to Design Better Connections?</h2>
+        <a href="#" class="cta-btn" data-t="nav_cta">Book a Demo</a>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="footer-logo">
+                    <a href="index.html" class="logo">
+                        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="0" y="16" width="8" height="8" stroke="#E85D04" stroke-width="2"/>
+                            <rect x="8" y="8" width="8" height="8" stroke="#E85D04" stroke-width="2"/>
+                            <rect x="16" y="0" width="8" height="8" stroke="#E85D04" stroke-width="2"/>
+                        </svg>
+                        <span>GSD IDEA</span>
+                    </a>
+                </div>
+                <p style="color:#888;">GSD IDEA — UAE & GCC</p>
+            </div>
+            <div class="footer-col">
+                <h5 data-t="footer_h1">Products</h5>
+                <ul>
+                    <li><a href="steel.html">Steel</a></li>
+                    <li><a href="concrete.html">Concrete</a></li>
+                    <li><a href="bim.html">BIM</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5 data-t="footer_h2">Company</h5>
+                <ul>
+                    <li><a href="training.html">Training</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="blog.html">Insights</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5 data-t="footer_h3">Legal</h5>
+                <ul>
+                    <li><a href="#">Privacy</a></li>
+                    <li><a href="#">Terms</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Gulf Structural Design.</p>
+        </div>
+    </footer>
+
+    <script>
+        const t = {
+            en: {
+                nav_steel: "STEEL", nav_concrete: "CONCRETE", nav_bim: "BIM", nav_support: "SUPPORT", nav_insights: "INSIGHTS", nav_cta: "Book a Demo",
+                hero_title: "IDEA STATICA STEEL",
+                hero_sub: "The world's leading software for steel connection design and member code-checking.",
+                f1_title: "Beam to Column", f1_desc: "Design moments, shear, and hollow section connections with ease.",
+                f2_title: "Footings & Anchoring", f2_desc: "Check base plates, anchors, and concrete blocks with non-linear analysis.",
+                f3_title: "3D Loaded Connections", f3_desc: "Handles complex 3D loading and any topology without assumptions.",
+                f4_title: "HSS Bracing", f4_desc: "Specialized tools for hollow structural sections and bracing systems.",
+                cap1_title: "CBFEM Method", cap1_desc: "A unique combination of FEM and component methods.",
+                cap2_title: "Integrations", cap2_desc: "STAAD Pro, ETABS, SAP2000, Tekla, and Revit links.",
+                cap3_title: "Code-Compliant Reports", cap3_desc: "Detailed reports with formulas and references.",
+                cta_title: "Ready to Design Better Connections?",
+                footer_h1: "Products", footer_h2: "Company", footer_h3: "Legal"
+            },
+            ar: {
+                nav_steel: "الصلب", nav_concrete: "الخرسانة", nav_bim: "نمذجة معلومات البناء", nav_support: "الدعم", nav_insights: "رؤى", nav_cta: "احجز عرضاً",
+                hero_title: "IDEA STATICA الصلب",
+                hero_sub: "البرنامج الرائد عالميًا لتصميم الوصلات الفولاذية والتحقق من الكود.",
+                f1_title: "علاقة العارضة بالعمود", f1_desc: "تصميم وصلات العزم والقص والمقاطع المجوفة بسهولة.",
+                f2_title: "القواعد والتدعيم", f2_desc: "التحقق من صفائح القاعدة والمثبتات والكتل الخرسانية.",
+                f3_title: "وصلات محملة ثلاثية الأبعاد", f3_desc: "يتعامل مع الأحمال ثلاثية الأبعاد المعقدة وأي هندسة.",
+                f4_title: "تدعيم HSS", f4_desc: "أدوات متخصصة للمقاطع الإنشائية المجوفة وأنظمة التدعيم.",
+                cap1_title: "طريقة CBFEM", cap1_desc: "مزيج فريد بين عناصر العناصر المحدودة وطريقة المكونات.",
+                cap2_title: "التكامل", cap2_desc: "روابط مع STAAD Pro و ETABS و Tekla و Revit.",
+                cap3_title: "تقارير متوافقة مع الكود", cap3_desc: "تقارير مفصلة تتضمن جميع الصيغ والمراجع.",
+                cta_title: "هل أنت مستعد لتصميم وصلات أفضل؟",
+                footer_h1: "المنتجات", footer_h2: "الشركة", footer_h3: "قانوني"
+            }
+        };
+
+        let currentLang = 'en';
+        function toggleLang() {
+            currentLang = currentLang === 'en' ? 'ar' : 'en';
+            document.documentElement.lang = currentLang;
+            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            updateTranslations();
+        }
+
+        function updateTranslations() {
+            document.querySelectorAll('[data-t]').forEach(el => {
+                const key = el.getAttribute('data-t');
+                if (t[currentLang][key]) el.innerText = t[currentLang][key];
+            });
+        }
+
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            nav.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        const scrolly = document.getElementById('scrolly');
+        window.addEventListener('scroll', () => {
+            const rect = scrolly.getBoundingClientRect();
+            const progress = -rect.top / (rect.height - window.innerHeight);
+            if (progress >= 0 && progress <= 1) {
+                let idx = 1;
+                if (progress > 0.75) idx = 4;
+                else if (progress > 0.5) idx = 3;
+                else if (progress > 0.25) idx = 2;
+
+                document.querySelectorAll('.feature-card').forEach((c, i) => c.classList.toggle('active', i + 1 === idx));
+                document.querySelectorAll('.visual-box').forEach((v, i) => v.classList.toggle('active', i + 1 === idx));
+            }
+        });
+    </script>
+</body>
+</html>
