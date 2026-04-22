@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training & Consulting | GSD IDEA - Certified IDEA StatiCa GCC</title>
+    <meta name="description" content="Professional IDEA StatiCa training and structural consulting for engineers in the UAE and GCC. Onboarding, advanced modeling, and BIM workflows.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --white: #FFFFFF;
+            --orange: #E85D04;
+            --orange-hover: #C44E03;
+            --dark: #0C0C0C;
+            --light-grey: #F4F5F7;
+            --glass: rgba(255, 255, 255, 0.8);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        [lang="ar"] * { font-family: 'Cairo', sans-serif; }
+
+        body { background-color: var(--white); color: var(--dark); overflow-x: hidden; line-height: 1.6; }
+
+        /* Navbar */
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 1.5rem 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; transition: var(--transition);
+        }
+
+        nav.scrolled {
+            background: rgba(12, 12, 12, 0.9); backdrop-filter: blur(10px);
+            padding: 1rem 5%; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            display: flex; align-items: center; gap: 10px;
+            text-decoration: none; color: white; font-weight: 700; font-size: 1.25rem;
+        }
+
+        .logo svg { width: 32px; height: 32px; }
+        .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+        .nav-links a {
+            text-decoration: none; color: rgba(255, 255, 255, 0.8);
+            font-weight: 400; font-size: 0.85rem; text-transform: uppercase;
+            letter-spacing: 1px; transition: var(--transition);
+        }
+        .nav-links a:hover { color: var(--orange); }
+        .nav-actions { display: flex; gap: 1.5rem; align-items: center; }
+        .lang-toggle {
+            background: rgba(255, 255, 255, 0.1); color: white; border-radius: 50px; padding: 4px 12px; cursor: pointer;
+            font-size: 0.8rem; font-weight: 600; border: none;
+        }
+        .cta-btn {
+            background: var(--orange); color: white; padding: 10px 24px;
+            border-radius: 50px; text-decoration: none; font-weight: 600;
+            transition: var(--transition); border: none; cursor: pointer;
+        }
+
+        /* Hero */
+        .hero-dark {
+            height: 60vh; background: var(--dark); color: white;
+            display: flex; flex-direction: column; justify-content: center;
+            align-items: center; text-align: center; padding: 0 5%;
+        }
+        .hero-dark h1 { font-size: 3.5rem; font-weight: 800; letter-spacing: -1px; }
+        .hero-dark h1 span { color: var(--orange); }
+        .hero-dark p { font-size: 1.2rem; color: #888; max-width: 800px; margin-top: 1rem; }
+
+        /* Intro */
+        .intro-section { padding: 100px 10%; display: grid; grid-template-columns: 1.5fr 1fr; gap: 4rem; align-items: center; }
+        .intro-text { font-size: 1.1rem; color: #444; }
+        .intro-stats { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+        .intro-stat { background: var(--light-grey); padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--orange); }
+        .intro-stat h4 { color: var(--orange); font-size: 1.2rem; }
+
+        /* Modules */
+        .modules-section { padding: 100px 10%; background: var(--light-grey); }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .modules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem; }
+
+        .module-card {
+            background: white; padding: 2.5rem; border-radius: 15px; position: relative;
+            transition: var(--transition); box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .module-card:hover { transform: translateY(-5px); border-color: var(--orange); }
+        .module-num { position: absolute; top: 2rem; right: 2rem; font-size: 3rem; font-weight: 800; color: rgba(232, 93, 4, 0.1); }
+        .module-meta { font-size: 0.85rem; color: #888; margin-bottom: 1rem; font-weight: 600; display: flex; gap: 1rem; }
+        .module-card h3 { font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--dark); }
+        .module-card ul { list-style: none; }
+        .module-card ul li { margin-bottom: 0.8rem; display: flex; align-items: center; gap: 10px; font-size: 0.95rem; }
+        .module-card ul li::before { content: '✓'; color: var(--orange); font-weight: 700; }
+
+        /* Consulting */
+        .consulting { background: var(--dark); color: white; padding: 100px 10%; text-align: center; }
+        .consulting h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .consulting p { color: #888; font-size: 1.1rem; margin-bottom: 3rem; }
+        .consulting-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; max-width: 1000px; margin: 0 auto 4rem; }
+        .consulting-item { background: rgba(255, 255, 255, 0.05); padding: 2rem; border-radius: 12px; text-align: left; }
+        .consulting-item i { color: var(--orange); font-size: 1.5rem; display: block; margin-bottom: 1rem; }
+
+        /* CTA Strip */
+        .cta-strip { background: var(--orange); color: white; padding: 60px 5%; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+        .cta-strip h3 { font-size: 1.5rem; }
+        .white-btn { background: white; color: var(--orange); padding: 12px 32px; border-radius: 50px; text-decoration: none; font-weight: 700; transition: var(--transition); }
+        .white-btn:hover { background: var(--dark); color: white; }
+
+        /* Footer */
+        footer { background: var(--dark); color: white; padding: 80px 5% 40px; border-top: 1px solid #222; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 4rem; }
+        .footer-logo .logo { color: white; }
+        .footer-col h5 { color: var(--orange); margin-bottom: 1.5rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.8rem; }
+        .footer-col ul li a { color: #aaa; text-decoration: none; }
+        .footer-bottom { padding-top: 2rem; border-top: 1px solid #222; display: flex; justify-content: space-between; color: #666; font-size: 0.9rem; }
+
+        /* Animations */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 968px) {
+            .nav-links, .nav-actions .cta-btn { display: none; }
+            .hero-dark h1 { font-size: 2.2rem; }
+            .intro-section { grid-template-columns: 1fr; gap: 2rem; }
+            .modules-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <a href="index.html" class="logo">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0" y="16" width="8" height="8" stroke="#E85D04" stroke-width="2"/>
+                <rect x="8" y="8" width="8" height="8" stroke="#E85D04" stroke-width="2"/>
+                <rect x="16" y="0" width="8" height="8" stroke="#E85D04" stroke-width="2"/>
+            </svg>
+            <span>GSD IDEA</span>
+        </a>
+        <div class="nav-links">
+            <a href="steel.html" data-t="nav_steel">STEEL</a>
+            <a href="concrete.html" data-t="nav_concrete">CONCRETE</a>
+            <a href="bim.html" data-t="nav_bim">BIM</a>
+            <a href="training.html" data-t="nav_training">TRAINING</a>
+            <a href="about.html" data-t="nav_about">ABOUT</a>
+            <a href="blog.html" data-t="nav_blog">INSIGHTS</a>
+        </div>
+        <div class="nav-actions">
+            <button class="lang-toggle" onclick="toggleLang()">EN|AR</button>
+            <a href="#" class="cta-btn" data-t="nav_cta">Book a Demo</a>
+        </div>
+    </nav>
+
+    <section class="hero-dark">
+        <h1 data-t="hero_title">TRAINING & <span>CONSULTING</span></h1>
+        <p data-t="hero_sub">Get fully onboarded, upskill your team, or request expert consulting tailored to the GCC market.</p>
+    </section>
+
+    <section class="intro-section reveal">
+        <div class="intro-text" data-t="intro_p">Whether you're new to IDEA StatiCa or looking to unlock advanced workflows, we offer structured training and personalized consulting for engineering teams across the GCC. Our programs are designed to minimize learning curves and maximize design efficiency.</div>
+        <div class="intro-stats">
+            <div class="intro-stat">
+                <h4 data-t="stat1_t">6 Training Modules</h4>
+                <p data-t="stat1_p">Comprehensive curriculum covering all software aspects.</p>
+            </div>
+            <div class="intro-stat">
+                <h4 data-t="stat2_t">Online & In-Person</h4>
+                <p data-t="stat2_p">Flexible delivery modes to suit your team's needs.</p>
+            </div>
+            <div class="intro-stat">
+                <h4 data-t="stat3_t">Arabic & English</h4>
+                <p data-t="stat3_p">Bilingual training by local industry experts.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="modules-section">
+        <div class="section-header reveal">
+            <h2 data-t="modules_title">Training Modules</h2>
+            <p data-t="modules_sub">Pick the right path for your structural engineering team.</p>
+        </div>
+        <div class="modules-grid">
+            <div class="module-card reveal">
+                <div class="module-num">01</div>
+                <div class="module-meta"><span>2.5h</span><span>Online</span></div>
+                <h3 data-t="m1_t">Steel Onboarding</h3>
+                <ul>
+                    <li data-t="m1_f1">CBFEM method fundamentals</li>
+                    <li data-t="m1_f2">Connection modeling basics</li>
+                    <li data-t="m1_f3">Automated report generation</li>
+                    <li data-t="m1_f4">Interactive Q&A session</li>
+                </ul>
+            </div>
+            <div class="module-card reveal">
+                <div class="module-num">02</div>
+                <div class="module-meta"><span>2.5h</span><span>Online</span></div>
+                <h3 data-t="m2_t">Concrete Onboarding</h3>
+                <ul>
+                    <li data-t="m2_f1">CSFM method overview</li>
+                    <li data-t="m2_f2">2D/3D anchoring design</li>
+                    <li data-t="m2_f3">Code-compliant reporting</li>
+                    <li data-t="m2_f4">Verification examples</li>
+                </ul>
+            </div>
+            <div class="module-card reveal">
+                <div class="module-num">03</div>
+                <div class="module-meta"><span>3h</span><span>Online / In-Person</span></div>
+                <h3 data-t="m3_t">Advanced Modeling</h3>
+                <ul>
+                    <li data-t="m3_f1">Using sketches and DXF import</li>
+                    <li data-t="m3_f2">Custom material definitions</li>
+                    <li data-t="m3_f3">Advanced weld modeling</li>
+                    <li data-t="m3_f4">Complex geometry handling</li>
+                </ul>
+            </div>
+            <div class="module-card reveal">
+                <div class="module-num">04</div>
+                <div class="module-meta"><span>3.5h</span><span>Online</span></div>
+                <h3 data-t="m4_t">Advanced Analysis</h3>
+                <ul>
+                    <li data-t="m4_f1">Buckling analysis workflows</li>
+                    <li data-t="m4_f2">Seismic design considerations</li>
+                    <li data-t="m4_f3">Bill of Material (BOM) management</li>
+                    <li data-t="m4_f4">Advanced output interpretation</li>
+                </ul>
+            </div>
+            <div class="module-card reveal">
+                <div class="module-num">05</div>
+                <div class="module-meta"><span>3h</span><span>Online</span></div>
+                <h3 data-t="m5_t">BIM Workflows</h3>
+                <ul>
+                    <li data-t="m5_f1">Checkbot bulk design</li>
+                    <li data-t="m5_f2">BIM links optimization</li>
+                    <li data-t="m5_f3">SAF format exchange</li>
+                    <li data-t="m5_f4">Managing bulk design data</li>
+                </ul>
+            </div>
+            <div class="module-card reveal">
+                <div class="module-num">06</div>
+                <div class="module-meta"><span>2.5h</span><span>Online</span></div>
+                <h3 data-t="m6_t">Anchoring</h3>
+                <ul>
+                    <li data-t="m6_f1">Custom pedestal design</li>
+                    <li data-t="m6_f2">Complex rebar layout</li>
+                    <li data-t="m6_f3">Special load application</li>
+                    <li data-t="m6_f4">Comprehensive anchoring reports</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="consulting">
+        <h2 data-t="cons_title">Expert Consulting Services</h2>
+        <p data-t="cons_sub">Hourly paid expert consultancy for advanced structural engineering needs.</p>
+        <div class="consulting-grid">
+            <div class="consulting-item reveal">
+                <i>⚙️</i>
+                <h4 data-t="cons1_t">API Integrations</h4>
+                <p data-t="cons1_p">Custom scripts to automate your engineering workflows.</p>
+            </div>
+            <div class="consulting-item reveal">
+                <i>📐</i>
+                <h4 data-t="cons2_t">Parametric Templates</h4>
+                <p data-t="cons2_p">Development of reusable design templates for your team.</p>
+            </div>
+            <div class="consulting-item reveal">
+                <i>📊</i>
+                <h4 data-t="cons3_t">Data Optimization</h4>
+                <p data-t="cons3_p">Streamlining data exchange between analysis platforms.</p>
+            </div>
+            <div class="consulting-item reveal">
+                <i>🔍</i>
+                <h4 data-t="cons4_t">Advanced Modeling</h4>
+                <p data-t="cons4_p">Expert guidance on modeling highly complex structures.</p>
+            </div>
+        </div>
+        <a href="mailto:support@gsdidea.ae" class="cta-btn" data-t="nav_cta">Book a Demo</a>
+    </section>
+
+    <div class="cta-strip">
+        <h3 data-t="onboard_t">New license holder? Register for a free onboarding session.</h3>
+        <a href="https://my.demio.com/ref/9LuVuRoBQaxRkq6w" class="white-btn" target="_blank" data-t="onboard_btn">Register Now</a>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="footer-logo">
+                    <a href="index.html" class="logo">
+                        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="0" y="16" width="8" height="8" stroke="#E85D04" stroke-width="2"/>
+                            <rect x="8" y="8" width="8" height="8" stroke="#E85D04" stroke-width="2"/>
+                            <rect x="16" y="0" width="8" height="8" stroke="#E85D04" stroke-width="2"/>
+                        </svg>
+                        <span>GSD IDEA</span>
+                    </a>
+                </div>
+                <p style="color:#888;">GSD IDEA — UAE & GCC</p>
+            </div>
+            <div class="footer-col">
+                <h5 data-t="footer_h1">Products</h5>
+                <ul>
+                    <li><a href="steel.html">Steel</a></li>
+                    <li><a href="concrete.html">Concrete</a></li>
+                    <li><a href="bim.html">BIM</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5 data-t="footer_h2">Company</h5>
+                <ul>
+                    <li><a href="training.html">Training</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="blog.html">Insights</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5 data-t="footer_h3">Legal</h5>
+                <ul>
+                    <li><a href="#">Privacy</a></li>
+                    <li><a href="#">Terms</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Gulf Structural Design.</p>
+        </div>
+    </footer>
+
+    <script>
+        const t = {
+            en: {
+                nav_steel: "STEEL", nav_concrete: "CONCRETE", nav_bim: "BIM", nav_training: "TRAINING", nav_about: "ABOUT", nav_blog: "INSIGHTS", nav_cta: "Book a Demo",
+                hero_title: "TRAINING & CONSULTING",
+                hero_sub: "Get fully onboarded, upskill your team, or request expert consulting tailored to the GCC market.",
+                intro_p: "Whether you're new to IDEA StatiCa or looking to unlock advanced workflows, we offer structured training and personalized consulting for engineering teams across the GCC.",
+                stat1_t: "6 Training Modules", stat1_p: "Comprehensive curriculum covering all aspects.",
+                stat2_t: "Online & In-Person", stat2_p: "Flexible delivery modes to suit your needs.",
+                stat3_t: "Arabic & English", stat3_p: "Bilingual training by local industry experts.",
+                modules_title: "Training Modules", modules_sub: "Pick the right path for your structural engineering team.",
+                m1_t: "Steel Onboarding", m1_f1: "CBFEM method fundamentals", m1_f2: "Connection modeling basics", m1_f3: "Automated report generation", m1_f4: "Interactive Q&A session",
+                m2_t: "Concrete Onboarding", m2_f1: "CSFM method overview", m2_f2: "2D/3D anchoring design", m2_f3: "Code-compliant reporting", m2_f4: "Verification examples",
+                m3_t: "Advanced Modeling", m3_f1: "Using sketches and DXF import", m3_f2: "Custom material definitions", m3_f3: "Advanced weld modeling", m3_f4: "Complex geometry handling",
+                m4_t: "Advanced Analysis", m4_f1: "Buckling analysis workflows", m4_f2: "Seismic design considerations", m4_f3: "Bill of Material reports", m4_f4: "Advanced output interpretation",
+                m5_t: "BIM Workflows", m5_f1: "Checkbot bulk design", m5_f2: "BIM links optimization", m5_f3: "SAF format exchange", m5_f4: "Managing bulk design data",
+                m6_t: "Anchoring", m6_f1: "Custom pedestal design", m6_f2: "Complex rebar layout", m6_f3: "Special load application", m6_f4: "Comprehensive anchoring reports",
+                cons_title: "Expert Consulting Services", cons_sub: "Hourly paid expert consultancy for advanced structural engineering needs.",
+                cons1_t: "API Integrations", cons1_p: "Custom scripts to automate workflows.",
+                cons2_t: "Parametric Templates", cons2_p: "Development of reusable templates.",
+                cons3_t: "Data Optimization", cons3_p: "Streamlining data exchange.",
+                cons4_t: "Advanced Modeling", cons4_p: "Expert guidance on complex structures.",
+                onboard_t: "New license holder? Register for a free onboarding session.", onboard_btn: "Register Now",
+                footer_h1: "Products", footer_h2: "Company", footer_h3: "Legal"
+            },
+            ar: {
+                nav_steel: "الصلب", nav_concrete: "الخرسانة", nav_bim: "نمذجة معلومات البناء", nav_training: "التدريب", nav_about: "من نحن", nav_blog: "رؤى", nav_cta: "احجز عرضاً",
+                hero_title: "التدريب والاستشارات",
+                hero_sub: "احصل على تدريب كامل، أو طور مهارات فريقك، أو اطلب استشارات الخبراء المصممة لسوق الخليج.",
+                intro_p: "سواء كنت جديدًا على IDEA StatiCa أو كنت تتطلع إلى فتح آفاق سير عمل متقدمة، فإننا نقدم تدريبًا منظمًا واستشارات مخصصة للفرق الهندسية في جميع أنحاء دول الخليج.",
+                stat1_t: "6 وحدات تدريبية", stat1_p: "منهج شامل يغطي جميع جوانب البرنامج.",
+                stat2_t: "عبر الإنترنت وحضورياً", stat2_p: "أنماط تقديم مرنة لتناسب احتياجات فريقك.",
+                stat3_t: "بالعربية والإنجليزية", stat3_p: "تدريب ثنائي اللغة من قبل خبراء الصناعة المحليين.",
+                modules_title: "الوحدات التدريبية", modules_sub: "اختر المسار الصحيح لفريق الهندسة الإنشائية الخاص بك.",
+                m1_t: "تأهيل الصلب", m1_f1: "أساسيات طريقة CBFEM", m1_f2: "أساسيات نمذجة الوصلات", m1_f3: "إنشاء تقارير مؤتمتة", m1_f4: "جلسة أسئلة وأجوبة تفاعلية",
+                m2_t: "تأهيل الخرسانة", m2_f1: "نظرة عامة على طريقة CSFM", m2_f2: "تصميم التثبيت 2D/3D", m2_f3: "تقارير متوافقة مع الكود", m2_f4: "أمثلة على التحقق",
+                m3_t: "النمذجة المتقدمة", m3_f1: "استخدام الرسومات واستيراد DXF", m3_f2: "تعريفات المواد المخصصة", m3_f3: "نمذجة اللحام المتقدمة", m3_f4: "التعامل مع الهندسة المعقدة",
+                m4_t: "التحليل المتقدم", m4_f1: "سير عمل تحليل الانبعاج", m4_f2: "اعتبارات التصميم الزلزالي", m4_f3: "تقارير فاتورة المواد (BOM)", m4_f4: "تفسير النتائج المتقدمة",
+                m5_t: "سير عمل BIM", m5_f1: "التصميم الكمي باستخدام Checkbot", m5_f2: "تحسين روابط BIM", m5_f3: "تبادل تنسيق SAF", m5_f4: "إدارة بيانات التصميم الكمي",
+                m6_t: "التثبيت", m6_f1: "تصميم قواعد مخصصة", m6_f2: "تخطيط التسليح المعقد", m6_f3: "تطبيق أحمال خاصة", m6_f4: "تقارير تثبيت شاملة",
+                cons_title: "خدمات استشارية من الخبراء", cons_sub: "استشارات خبراء مدفوعة بالساعة للاحتياجات الهندسية المتقدمة.",
+                cons1_t: "تكامل API", cons1_p: "نصوص مخصصة لأتمتة سير العمل.",
+                cons2_t: "قوالب بارامترية", cons2_p: "تطوير قوالب تصميم قابلة لإعادة الاستخدام.",
+                cons3_t: "تحسين البيانات", cons3_p: "تبسيط تبادل البيانات بين المنصات.",
+                cons4_t: "النمذجة المتقدمة", cons4_p: "إرشاد الخبراء حول الهياكل المعقدة.",
+                onboard_t: "حامل ترخيص جديد؟ سجل في جلسة تأهيل مجانية.", onboard_btn: "سجل الآن",
+                footer_h1: "المنتجات", footer_h2: "الشركة", footer_h3: "قانوني"
+            }
+        };
+
+        let currentLang = 'en';
+        function toggleLang() {
+            currentLang = currentLang === 'en' ? 'ar' : 'en';
+            document.documentElement.lang = currentLang;
+            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            updateTranslations();
+        }
+
+        function updateTranslations() {
+            document.querySelectorAll('[data-t]').forEach(el => {
+                const key = el.getAttribute('data-t');
+                if (t[currentLang][key]) el.innerText = t[currentLang][key];
+            });
+        }
+
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
